@@ -5,8 +5,6 @@
 # ToDo-List App. 
 - [📖 About the Project](#about-project)
   - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
   - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
@@ -67,7 +65,7 @@ create a new task, mark the task as completed  and delete them from local storag
 <!-- Live Demo -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
-<a href="https://evansnyamekye.github.io/Awesome-books-ES6/">Live-Demo</a>
+
 
 <!-- GETTING STARTED -->
 
@@ -82,7 +80,7 @@ To get get a local copy up and running, you can follow these simple steps:
 Clone the repository to your local machine using the following command:
 
 ```sh
-https://github.com/evansnyamekye/Awesome-books-ES6.git
+https://github.com/evansnyamekye/ToDo-List.git
 ```
 Navigate to the project directory:
 
@@ -103,9 +101,9 @@ That's it! With these simple steps, you should be able to get up and running wit
 
 ### Usage
 
-To use this project, simply visit the following link: https://github.com/evansnyamekye/Awesome-books-ES6.git
+To use this project, simply visit the following link: https://github.com/evansnyamekye/ToDo-List.git
 
-- **Open the <a href="https://github.com/evansnyamekye/Awesome-books-ES6.git">project 🚀</a> in your web browser.**
+- **Open the <a href="https://github.com/evansnyamekye/ToDo-List.git">project 🚀</a> in your web browser.**
 
 - **Use the provided form to add books to the list.**
 
