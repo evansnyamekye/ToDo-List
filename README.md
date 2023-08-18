@@ -82,7 +82,7 @@ To get get a local copy up and running, you can follow these simple steps:
 Clone the repository to your local machine using the following command:
 
 ```sh
-https://github.com/evansnyamekye/Awesome-books-ES6.git
+https://github.com/evansnyamekye/ToDo-List.git
 ```
 Navigate to the project directory:
 
@@ -103,9 +103,9 @@ That's it! With these simple steps, you should be able to get up and running wit
 
 ### Usage
 
-To use this project, simply visit the following link: https://github.com/evansnyamekye/Awesome-books-ES6.git
+To use this project, simply visit the following link: https://github.com/evansnyamekye/ToDo-List.git
 
-- **Open the <a href="https://github.com/evansnyamekye/Awesome-books-ES6.git">project 🚀</a> in your web browser.**
+- **Open the <a href="https://github.com/evansnyamekye/ToDo-List.git">project 🚀</a> in your web browser.**
 
 - **Use the provided form to add books to the list.**
 
