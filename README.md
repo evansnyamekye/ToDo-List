@@ -5,8 +5,6 @@
 # ToDo-List App. 
 - [📖 About the Project](#about-project)
   - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
   - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
@@ -67,7 +65,7 @@ create a new task, mark the task as completed  and delete them from local storag
 <!-- Live Demo -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
-<a href="https://evansnyamekye.github.io/Awesome-books-ES6/">Live-Demo</a>
+
 
 <!-- GETTING STARTED -->
 
