@@ -1,12 +1,12 @@
 const todoData = [
   {
     index: 1,
-    description: 'wash the dishes',
+    description: 'Wash the dishes',
     completed: false,
   },
   {
     index: '01',
-    description: 'complete todo list project',
+    description: 'Complete todo list project',
     completed: false,
   },
 ];
