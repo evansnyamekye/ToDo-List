@@ -67,7 +67,7 @@ create a new task, mark the task as completed  and delete them from local storag
 <!-- Live Demo -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
-<a href="https://evansnyamekye.github.io/Awesome-books-ES6/">Live-Demo</a>
+<a href="">Live-Demo</a>
 
 <!-- GETTING STARTED -->
 
