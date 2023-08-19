@@ -1,14 +1,14 @@
-import './style.css';
-import Todo from './modules/data.js';
-import UI from './modules/ui.js';
+import './styles/style.css';
+import Todo from './modules/data';
+import UI from './modules/ui';
 
 const ui = new UI();
 const form = document.querySelector('.form');
-const clearButton = document.querySelector('.clearButton');
+const clearBtn = document.querySelector('.clearBtn');
 
 document.addEventListener('DOMContentLoaded', UI.displayFromLocalStorage);
 
-// Add todo-list functionslity
+// Add todo list
 form.addEventListener('submit', (e) => {
   const desc = document.querySelector('.desc').value;
   const newId = UI.getItem();
@@ -24,10 +24,10 @@ form.addEventListener('submit', (e) => {
   if (desc === '') {
     ui.errorMsg('Error', 'rgba(255, 0, 0, 0.5)');
   } else {
-    // Initialize todo Data
+    // Init todo data
     const newTodo = new Todo(index, desc, completed);
 
-    // display data on UI
+    // Display data on ui
     ui.displayTask(newTodo);
 
     UI.addToLocalStorage(newTodo);
@@ -36,8 +36,9 @@ form.addEventListener('submit', (e) => {
 
     document.querySelector('.desc').value = '';
   }
+
   e.preventDefault();
 });
 
-// clear all task
-clearButton.addEventListener('click', UI.clearCompletedTasks);
+// Clear all task
+clearBtn.addEventListener('click', UI.clearCompletedTasks);

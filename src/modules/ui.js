@@ -24,11 +24,11 @@ class UI {
   displayTask(newTodo) {
     this.newTodo = newTodo;
     const ul = document.querySelector('.ul');
-    const list = document.querySelector('li');
+    const list = document.createElement('li');
     list.id = 'list';
     list.className = newTodo.index;
     const div = document.createElement('div');
-    div.className = 'div';
+    div.className = 'divn';
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -67,10 +67,10 @@ class UI {
 
     const newInput = list.querySelector('.edit');
     newInput.addEventListener('input', () => {
-      // update description on task
+      // Update the description of the task
       newTodo.description = newInput.value;
 
-      // update task in localstorage
+      // Update the task in the localStorage
       UI.updateTaskInLocalStorage(newTodo.index, newTodo);
     });
 
@@ -78,7 +78,7 @@ class UI {
       const allListItems = document.querySelectorAll('.ul li');
       allListItems.forEach((item) => {
         if (item === list) {
-          item.classList.add('avtive');
+          item.classList.add('active');
           const trashIcon = item.querySelector('.fa-trash-alt');
           const ellipsisIcon = item.querySelector('.fa-ellipsis-v');
           trashIcon.classList.remove('hidden');
@@ -86,7 +86,7 @@ class UI {
         }
       });
 
-      // check is active is remove
+      // Check if the 'active' class is removed
       if (list.classList.contains('active')) {
         trashIcon.classList.remove('hidden');
         ellipsisIcon.classList.add('hidden');
@@ -100,16 +100,16 @@ class UI {
           item.classList.remove('active');
           const trashIcon = item.querySelector('.fa-trash-alt');
           const ellipsisIcon = item.querySelector('.fa-ellipsis-v');
-          trashIcon.classList.remove('hidden');
+          trashIcon.classList.add('hidden');
           ellipsisIcon.classList.remove('hidden');
         }
       });
     });
 
-    // Add event-listener to Authenticate if task is completed true or false
+    // Add event listener to check if completed === true
     const checkboxI = list.querySelector('.check');
     checkboxI.addEventListener('change', () => {
-      // update the status of task
+      // Update the status of the task
       newTodo.completed = !newTodo.completed;
 
       if (newTodo.completed === true) {
@@ -120,19 +120,19 @@ class UI {
         checkbox.checked = false;
       }
 
-      // update task in localStorage
+      // Update the task in the localStorage
       UI.updateTaskInLocalStorage(newTodo.index, newTodo);
     });
 
-    // Add eventListener to delete Icon
+    // Add event listener to delete icon
     trashIcon.addEventListener('click', () => {
-      const taskid = newTodo.index;
+      const taskId = newTodo.index;
 
-      // remove the task from UI
+      // Remove the task from the UI
       ul.removeChild(list);
 
-      // remove task from localstorage
-      UI.deleteTaskFromLocalStorage(taskid);
+      // Remove the task from the localStorage
+      UI.deleteTaskFromLocalStorage(taskId);
     });
   }
 
@@ -143,47 +143,47 @@ class UI {
     localStorage.setItem('todoData', JSON.stringify(todoData));
   }
 
-  static updateTaskInLocalStorage(taskid, updatedTodo) {
+  static updateTaskInLocalStorage(taskId, updatedTodo) {
     const todoData = UI.getItem();
-    const taskIndex = todoData.findIndex((todo) => todo.index === taskid);
+    const taskIndex = todoData.findIndex((todo) => todo.index === taskId);
     if (taskIndex !== -1) {
       todoData[taskIndex] = updatedTodo;
       localStorage.setItem('todoData', JSON.stringify(todoData));
     }
   }
 
-  static deleteTaskFromLocalStorage(taskid) {
+  static deleteTaskFromLocalStorage(taskId) {
     const ui = new UI();
     const todoData = UI.getItem();
-    const taskIndex = todoData.findIndex((todo) => todo.index === taskid);
+    const taskIndex = todoData.findIndex((todo) => todo.index === taskId);
     if (taskIndex !== -1) {
       todoData.splice(taskIndex, 1);
       localStorage.setItem('todoData', JSON.stringify(todoData));
     }
-    ui.errorMsg('success', 'rgba(9, 186, 9, 0.5');
+    ui.errorMsg('Success', 'rgba(9, 186, 9, 0.5)');
   }
 
   static clearCompletedTasks() {
     const todoData = UI.getItem();
     const ui = new UI();
 
-    // Filter out completed task
+    // Filter out completed tasks
     const incompleteTasks = todoData.filter((todo) => !todo.completed);
 
-    // Update localstorage with incomplete task
+    // Update localStorage with incomplete tasks
     localStorage.setItem('todoData', JSON.stringify(incompleteTasks));
 
-    // remove completed task
+    // Remove completed tasks from the UI
     const completedTasks = document.querySelectorAll('.completed');
     completedTasks.forEach((task) => {
       const listItem = task.closest('li');
       listItem.parentNode.removeChild(listItem);
     });
 
-    ui.errorMsg('success', 'rgba(9, 186, 9, 0.5)');
+    ui.errorMsg('Success', 'rgba(9, 186, 9, 0.5)');
   }
 
-  static displayFromLoacalStorage() {
+  static displayFromLocalStorage() {
     const ui = new UI();
     const todoList = UI.getItem();
     todoList.forEach((todo) => {

@@ -9,7 +9,7 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    assetModuleFilename: '[name][text]',
+    assetModuleFilename: '[name][text]'
   },
 
   module: {
