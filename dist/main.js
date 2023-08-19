@@ -476,17 +476,6 @@ li.placeholder {
   background: #d5d7d5;
 }
 
-.card-footer button {
-  font-family: 'Poppins', sans-serif;
-  color: #171723;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.card-footer:hover  {
-  opacity: 0.5;
-}
-
 button {
   display: inline-block;
   cursor: pointer;
@@ -495,6 +484,17 @@ button {
   margin: auto;
   color: #fff;
   font-weight: 600;
+}
+
+.card-footer button {
+  font-family: 'Poppins', sans-serif;
+  color: #171723;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.card-footer:hover {
+  opacity: 0.5;
 }
 
 button:active {
@@ -631,6 +631,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _storage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(13);
+
+
 class UI {
   errorMsg(message, color) {
     this.message = message;
@@ -644,7 +647,7 @@ class UI {
     }, 3000);
   }
 
-  static getItem() {
+  static getItems() {
     let todoData;
     if (localStorage.getItem('todoData') === null) {
       todoData = [];
@@ -704,37 +707,21 @@ class UI {
       newTodo.description = newInput.value;
 
       // Update the task in the localStorage
-      UI.updateTaskInLocalStorage(newTodo.index, newTodo);
+      (0,_storage_js__WEBPACK_IMPORTED_MODULE_0__.updateItemInLocalStorage)(newTodo.index, newTodo);
     });
 
     newInput.addEventListener('focusin', () => {
       const allListItems = document.querySelectorAll('.ul li');
       allListItems.forEach((item) => {
-        if (item === list) {
-          item.classList.add('active');
-          const trashIcon = item.querySelector('.fa-trash-alt');
-          const ellipsisIcon = item.querySelector('.fa-ellipsis-v');
-          trashIcon.classList.remove('hidden');
-          ellipsisIcon.classList.add('hidden');
-        }
-      });
-
-      // Check if the 'active' class is removed
-      if (list.classList.contains('active')) {
+        item.classList.add('active');
+        const trashIcon = item.querySelector('.fa-trash-alt');
+        const ellipsisIcon = item.querySelector('.fa-ellipsis-v');
         trashIcon.classList.remove('hidden');
         ellipsisIcon.classList.add('hidden');
-      }
-    });
-
-    newInput.addEventListener('focusout', () => {
-      const allListItems = document.querySelectorAll('.ul li');
-      allListItems.forEach((item) => {
-        if (item !== list) {
-          item.classList.remove('active');
-          const trashIcon = item.querySelector('.fa-trash-alt');
-          const ellipsisIcon = item.querySelector('.fa-ellipsis-v');
-          trashIcon.classList.add('hidden');
-          ellipsisIcon.classList.remove('hidden');
+        if (item === list) {
+          item.classList.add('active');
+          trashIcon.classList.remove('hidden');
+          ellipsisIcon.classList.add('hidden');
         }
       });
     });
@@ -754,7 +741,7 @@ class UI {
       }
 
       // Update the task in the localStorage
-      UI.updateTaskInLocalStorage(newTodo.index, newTodo);
+      (0,_storage_js__WEBPACK_IMPORTED_MODULE_0__.updateItemInLocalStorage)(newTodo.index, newTodo);
     });
 
     // Add event listener to delete icon
@@ -765,67 +752,128 @@ class UI {
       ul.removeChild(list);
 
       // Remove the task from the localStorage
-      UI.deleteTaskFromLocalStorage(taskId);
-    });
-  }
-
-  static addToLocalStorage(newTodo) {
-    this.newTodo = newTodo;
-    const todoData = UI.getItem();
-    todoData.push(newTodo);
-    localStorage.setItem('todoData', JSON.stringify(todoData));
-  }
-
-  static updateTaskInLocalStorage(taskId, updatedTodo) {
-    const todoData = UI.getItem();
-    const taskIndex = todoData.findIndex((todo) => todo.index === taskId);
-    if (taskIndex !== -1) {
-      todoData[taskIndex] = updatedTodo;
-      localStorage.setItem('todoData', JSON.stringify(todoData));
-    }
-  }
-
-  static deleteTaskFromLocalStorage(taskId) {
-    const ui = new UI();
-    const todoData = UI.getItem();
-    const taskIndex = todoData.findIndex((todo) => todo.index === taskId);
-    if (taskIndex !== -1) {
-      todoData.splice(taskIndex, 1);
-      localStorage.setItem('todoData', JSON.stringify(todoData));
-    }
-    ui.errorMsg('Success', 'rgba(9, 186, 9, 0.5)');
-  }
-
-  static clearCompletedTasks() {
-    const todoData = UI.getItem();
-    const ui = new UI();
-
-    // Filter out completed tasks
-    const incompleteTasks = todoData.filter((todo) => !todo.completed);
-
-    // Update localStorage with incomplete tasks
-    localStorage.setItem('todoData', JSON.stringify(incompleteTasks));
-
-    // Remove completed tasks from the UI
-    const completedTasks = document.querySelectorAll('.completed');
-    completedTasks.forEach((task) => {
-      const listItem = task.closest('li');
-      listItem.parentNode.removeChild(listItem);
-    });
-
-    ui.errorMsg('Success', 'rgba(9, 186, 9, 0.5)');
-  }
-
-  static displayFromLocalStorage() {
-    const ui = new UI();
-    const todoList = UI.getItem();
-    todoList.forEach((todo) => {
-      ui.displayTask(todo);
+      (0,_storage_js__WEBPACK_IMPORTED_MODULE_0__.deleteNow)(taskId);
     });
   }
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UI);
+
+/***/ }),
+/* 13 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   clearCompletedTasks: () => (/* binding */ clearCompletedTasks),
+/* harmony export */   deleteNow: () => (/* binding */ deleteNow),
+/* harmony export */   errorMsg: () => (/* binding */ errorMsg),
+/* harmony export */   getItems: () => (/* binding */ getItems),
+/* harmony export */   handleStatusUpdate: () => (/* binding */ handleStatusUpdate),
+/* harmony export */   saveToLocalStorage: () => (/* binding */ saveToLocalStorage),
+/* harmony export */   updateItemInLocalStorage: () => (/* binding */ updateItemInLocalStorage)
+/* harmony export */ });
+const errorMsg = (message, color) => {
+  const msg = document.querySelector('.msg');
+  msg.style.display = 'block';
+  msg.innerText = message;
+  msg.style.background = color;
+  setTimeout(() => {
+    msg.style.display = 'none';
+  }, 3000);
+};
+
+const getItems = () => {
+  let tasks;
+  if (localStorage.getItem('todoList') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('todoList'));
+  }
+  return tasks;
+};
+
+const saveToLocalStorage = (newTodo) => {
+  const todoList = getItems();
+  todoList.push(newTodo);
+  localStorage.setItem('todoList', JSON.stringify(todoList));
+};
+
+const updateItemInLocalStorage = (index, updateItem) => {
+  const todoList = getItems();
+  const itemIndex = todoList.findIndex((item) => item.index === index);
+
+  if (itemIndex !== -1) {
+    todoList[itemIndex] = updateItem;
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+  }
+};
+
+const deleteNow = (taskId) => {
+  let todoData = getItems();
+  // Filter out the task to be deleted and update the index of remaining tasks
+  todoData = todoData.filter((todo) => todo.index !== taskId).map((todo, index) => {
+    todo.index = index + 1;
+    return todo;
+  });
+  // Update the localStorage with the updated todoData
+  localStorage.setItem('todoList', JSON.stringify(todoData));
+  errorMsg('Success', 'rgba(9, 186, 9, 0.5)');
+};
+
+const clearCompletedTasks = () => {
+  const todoData = getItems();
+
+  // Filter out completed tasks and update the index of remaining tasks
+  const newTodoData = todoData.filter((todo) => !todo.completed).map((todo, index) => {
+    todo.index = index + 1;
+    return todo;
+  });
+
+  // Update the localStorage with the incomplete tasks
+  localStorage.setItem('todoList', JSON.stringify(newTodoData));
+
+  // Remove completed tasks from the UI
+  const completedTasks = document.querySelectorAll('.completed');
+  completedTasks.forEach((task) => {
+    const listItem = task.closest('li');
+    listItem.parentNode.removeChild(listItem);
+  });
+
+  errorMsg('Success', 'rgba(9, 186, 9, 0.5)');
+};
+
+const ul = document.querySelector('.ul');
+
+const handleStatusUpdate = () => {
+  ul.addEventListener('change', (e) => {
+    if (e.target.classList.contains('check')) {
+      const taskId = e.target.id;
+      let todoData = getItems();
+
+      // Filter out the task with the specified taskId and update its completed status
+      todoData = todoData.filter((todo) => {
+        if (todo.index === taskId) {
+          todo.completed = e.target.checked;
+        }
+        return todo;
+      });
+
+      // Update the task in the localStorage
+      localStorage.setItem('todoData', JSON.stringify(todoData));
+
+      // Update the completed class on the input element
+      const input = e.target.nextElementSibling;
+      if (e.target.checked) {
+        input.classList.add('completed');
+      } else {
+        input.classList.remove('completed');
+      }
+    }
+  });
+};
+
+
 
 /***/ })
 /******/ 	]);
