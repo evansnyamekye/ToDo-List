@@ -1,3 +1,5 @@
+import { updateItemInLocalStorage, deleteNow } from './storage.js';
+
 class UI {
   errorMsg(message, color) {
     this.message = message;
@@ -71,7 +73,7 @@ class UI {
       newTodo.description = newInput.value;
 
       // Update the task in the localStorage
-      UI.updateTaskInLocalStorage(newTodo.index, newTodo);
+      updateItemInLocalStorage(newTodo.index, newTodo);
     });
 
     newInput.addEventListener('focusin', () => {
@@ -188,6 +190,9 @@ class UI {
     const todoList = UI.getItem();
     todoList.forEach((todo) => {
       ui.displayTask(todo);
+
+      // Remove the task from the localStorage
+      deleteNow();
     });
   }
 }
