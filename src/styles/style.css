@@ -163,17 +163,6 @@ li.placeholder {
   background: #d5d7d5;
 }
 
-.card-footer button {
-  font-family: 'Poppins', sans-serif;
-  color: #171723;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.card-footer:hover  {
-  opacity: 0.5;
-}
-
 button {
   display: inline-block;
   cursor: pointer;
@@ -182,6 +171,17 @@ button {
   margin: auto;
   color: #fff;
   font-weight: 600;
+}
+
+.card-footer button {
+  font-family: 'Poppins', sans-serif;
+  color: #171723;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.card-footer:hover {
+  opacity: 0.5;
 }
 
 button:active {
