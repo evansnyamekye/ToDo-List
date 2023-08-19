@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webpack Exercise</title>
-    <!-- CSS Link -->
-    <link rel="stylesheet" href="/src/style.css">
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +22,7 @@
 <body>
     <!-- start of todo-list main -->
     <main>
+      <p class="msg"></p>
         <section class="container">
             <div class="card">
                 <div class="card-header">
@@ -33,14 +32,14 @@
                 <div class="card-body">
                     <div class="field">
                         <form class="form">
-                            <input type="text" id="" placeholder="Add to your list...">
+                            <input type="text" class="desc" placeholder="Add to your list...">
                             <button><i class="fa fa-level-down-alt fa-rotate-90"></i></button>
                         </form>
                     </div>
                     <ul class="ul"></ul>
                 </div>
                 <div class="card-footer">
-                    <button>Clear all completed</button>
+                    <button type="submit" class="clearButton">Clear all completed</button>
                 </div>
             </div>
         </section>

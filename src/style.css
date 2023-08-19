@@ -14,11 +14,28 @@ body {
   background-color: #87878b;
 }
 
+.msg {
+  display: none;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  margin-top: 20px;
+  width: 300px;
+  padding: 10px 80px;
+  border-radius: 15px;
+  text-align: center;
+  color: #fff;
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 0 40px;
+  max-width: 600px;
+  margin: auto;
 }
 
 .card {
@@ -47,6 +64,8 @@ body {
 .card-body {
   height: 100%;
   border-bottom: 1px solid #ccc;
+  max-height: 500px;
+  overflow: auto;
 }
 
 .card-body .form-field {
@@ -72,6 +91,22 @@ body {
   padding: 15px;
 }
 
+.form .desc {
+  width: 100%;
+  font-size: 16px;
+  font-style: italic;
+  border: none;
+  background: transparent;
+}
+
+.form .desc:focus {
+  outline: none;
+}
+
+.ul .edit:focus {
+  outline: none;
+}
+
 .form input:focus {
   outline: none;
 }
@@ -94,6 +129,10 @@ ul li div {
   align-items: center;
   gap: 10px;
   height: 100%;
+}
+
+li.dragging {
+  background-color: rgba(244, 233, 223, 0.5);
 }
 
 .card-footer {
