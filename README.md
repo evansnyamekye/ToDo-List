@@ -62,11 +62,6 @@ create a new task, mark the task as completed  and delete them from local storag
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- Live Demo -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
