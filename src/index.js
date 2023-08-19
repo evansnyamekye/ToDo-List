@@ -1,34 +1,44 @@
-// import _ from 'lodash';
-// import './style.css';
+import './styles/style.css';
+import Todo from './modules/data';
+import UI from './modules/ui';
 
-// function component() {
-//     const element = document.createElement('div');
+const ui = new UI();
+const form = document.querySelector('.form');
+const clearBtn = document.querySelector('.clearBtn');
 
-// Lodash, currently included via a script, is required for this line to work
-// Lodash, now imported by this script
-//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-//     element.classList.add('hello');
+document.addEventListener('DOMContentLoaded', UI.displayFromLocalStorage);
 
-//     return element;
-//   }
+// Add todo list
+form.addEventListener('submit', (e) => {
+  const desc = document.querySelector('.desc').value;
+  const newId = UI.getItem();
+  let index;
+  if (newId.length > 0) {
+    index = newId[newId.length - 1].index + 1;
+  } else {
+    index = 0;
+  }
 
-//   document.body.appendChild(component());
-import './style.css';
-import todoData from './modules/data.js';
+  const completed = false;
 
-const ul = document.querySelector('.ul');
+  if (desc === '') {
+    ui.errorMsg('Error', 'rgba(255, 0, 0, 0.5)');
+  } else {
+    // Init todo data
+    const newTodo = new Todo(index, desc, completed);
 
-function displayTask() {
-  todoData.forEach((data) => {
-    const list = document.createElement('li');
-    list.innerHTML = `
-      <div><input type="checkbox" id="check">
-        <p>${data.description}</p>
-      </div>
-      <i class="fas fa-ellipsis-v"></i>
-    `;
-    ul.appendChild(list);
-  });
-}
+    // Display data on ui
+    ui.displayTask(newTodo);
 
-document.addEventListener('DOMContentLoaded', displayTask);
+    UI.addToLocalStorage(newTodo);
+
+    ui.errorMsg('Success', 'rgba(9, 186, 9, 0.5)');
+
+    document.querySelector('.desc').value = '';
+  }
+
+  e.preventDefault();
+});
+
+// Clear all task
+clearBtn.addEventListener('click', UI.clearCompletedTasks);

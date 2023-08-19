@@ -1,14 +1,9 @@
-const todoData = [
-  {
-    index: 1,
-    description: 'Wash the dishes',
-    completed: false,
-  },
-  {
-    index: '01',
-    description: 'Complete todo list project',
-    completed: false,
-  },
-];
+class Todo {
+  constructor(index, description, completed) {
+    this.index = index;
+    this.description = description;
+    this.completed = completed;
+  }
+}
 
-export default todoData;
+export default Todo;
