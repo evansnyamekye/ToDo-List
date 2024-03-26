@@ -6,8 +6,8 @@ module.exports = {
   entry: './src/index.js',
   mode: 'none',
   output: {
+    path: path.resolve(__dirname, 'public', 'dist', 'build'),
     filename: 'main.js',
-    path: path.resolve(__dirname, 'public', 'dist'),
     clean: true,
     assetModuleFilename: '[name][text]'
   },
