@@ -23,7 +23,7 @@ module.exports = {
 
   devServer: {
     static: './dist',
-    public: 'https://todo-list-71gb.onrender.com'
+    public: 'http://localhost:8080/'
   },
 
   plugins: [
