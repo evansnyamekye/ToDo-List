@@ -21,11 +21,12 @@ module.exports = {
     ],
   },
 
-  devServer: {
-    static: './dist', 'public',
- 
-  },
-
+ devServer: {
+  static: [
+    { directory: './dist', watch: true },
+    { directory: 'public', watch: true }
+  ]
+},
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
